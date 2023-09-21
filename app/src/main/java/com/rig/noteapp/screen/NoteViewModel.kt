@@ -36,14 +36,14 @@ class NoteViewModel @Inject constructor(
                 }
         }
     }
-    suspend fun addNotes(note:Note) = viewModelScope.launch {
+     fun addNotes(note:Note) = viewModelScope.launch(Dispatchers.IO) {
         noteRepository.addNote(note)
     }
-    suspend fun updateNote(note:Note) = viewModelScope.launch {
+     fun updateNote(note:Note) = viewModelScope.launch (Dispatchers.IO){
         noteRepository.updateNote(note)
     }
 
-    suspend fun removeNote(note:Note) = viewModelScope.launch {
+     fun removeNote(note:Note) = viewModelScope.launch(Dispatchers.IO) {
         noteRepository.deleteNote(note)
     }
 

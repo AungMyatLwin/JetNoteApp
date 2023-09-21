@@ -35,7 +35,6 @@ import com.rig.noteapp.components.NoteRow
 import com.rig.noteapp.components.NoteTextFields
 import com.rig.noteapp.data.NoteDataSource
 
-@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NoteScreen(

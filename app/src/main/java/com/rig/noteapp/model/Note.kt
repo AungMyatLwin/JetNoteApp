@@ -16,11 +16,10 @@ import java.util.UUID
     tableName = "notes_tbl",
 )
 data class Note(
-    @PrimaryKey
-    val id:UUID = UUID.randomUUID(),
+    @PrimaryKey(autoGenerate = true)
+    val id:Int =0,
     @ColumnInfo(name="note_title")
     val title:String,
     @ColumnInfo(name="note_description")
     val description:String,
-
 )

@@ -11,6 +11,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -39,7 +40,8 @@ class MainActivity : ComponentActivity() {
                     val notes= remember{
                         mutableStateListOf<com.rig.noteapp.model.Note>()
                     }
-                    val viewModel:NoteViewModel by viewModels()
+//                    val viewModel:NoteViewModel by viewModels()
+                    val viewModel = viewModel<NoteViewModel>()
                     NoteScreen(viewModel)
                 }
             }
@@ -47,19 +49,17 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun NoteScreen(noteViewModel: NoteViewModel = viewModel()){
-    val notes = noteViewModel.getAllNotes()
+fun NoteScreen(noteViewModel: NoteViewModel ){
+    val notes = noteViewModel.noteList.collectAsState().value
     NoteScreen(notes=notes,
         onAddNote = {
             noteViewModel.addNotes(it)
         }, onRemoveNote = {
-            noteViewModel.removeNotes(it)
+            noteViewModel.removeNote(it)
         })
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Preview()
 @Composable
 fun PreviewNotes(){
