@@ -76,8 +76,6 @@ fun NoteRow(
             horizontalAlignment = Alignment.Start) {
             Text(note.title, style = MaterialTheme.typography.labelSmall)
             Text(text = note.description, style = MaterialTheme.typography.labelMedium)
-            Text(text = note.entryData.format(DateTimeFormatter.ofPattern("EEE, d MMM")),
-                style = MaterialTheme.typography.labelSmall)
         }
     }
 }
